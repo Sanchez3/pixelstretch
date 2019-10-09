@@ -15,7 +15,7 @@ class PixelStretch {
         document.body.appendChild(renderer.view);
 
         var loader=new PIXI.loaders.Loader();
-        loader.add('pic1',)
+        loader.add('pic1','../img/pic1.jpg');
 
 
     }
