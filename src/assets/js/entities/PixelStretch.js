@@ -6,17 +6,44 @@ class PixelStretch {
         this.init()
     }
     init() {
-        var renderer = new PIXI.WebGLRenderer({
+        var app = new PIXI.Application({
             width: window.innerWidth,
             height: window.innerHeight,
+            resolution: window.devicePixelRatio,
             antialias: true,
             preserveDrawingBuffer: true,
         });
-        document.body.appendChild(renderer.view);
+        document.body.appendChild(app.view);
+        // PIXI.utils.clearTextureCache;
+        app.loader.add('pic1', '/assets/img/pic1.jpg')
+        app.loader.load(onLoaded)
 
-        var loader=new PIXI.loaders.Loader();
-        loader.add('pic1','../img/pic1.jpg');
+
+        function onLoaded(loader, resources) {
+            var pic = new PIXI.Sprite(resources.pic1.texture)
+            app.stage.addChild(pic)
 
 
+            //uniform sampler2D texture;
+            // uniform float split_center_point;
+            // uniform float split_size;
+            var stretchfilter = new PIXI.Filter(null, StretchFrag, {
+                // split_center_point: { type: 'f', value: 0.5 },
+                // split_size: { type: 'f', value: 0.001 }
+                split_center_point:0.2,
+                split_size:0.001
+            })
+            app.stage.filters = [stretchfilter]
+            //stretchfilter.uniforms.split_center_point
+
+            app.ticker.add(function() {
+
+                // stretchfilter.uniforms.split_center_point+= app.ticker.elapsedMS * 0.001;
+                stretchfilter.uniforms.split_size+= app.ticker.elapsedMS * 0.001
+            })
+
+        }
     }
+
 }
+export default PixelStretch;

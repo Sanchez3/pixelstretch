@@ -12,6 +12,7 @@
 // import animate_css from 'animate.css/animate.min.css';
 import css from '../css/css.css';
 
+import PixelStretch from './entities/PixelStretch.js';
 
 
 window.h5 = {
@@ -94,6 +95,8 @@ window.h5 = {
 };
 window.onload = function() {
     window.h5.init();
+    var pixelstretch = new PixelStretch();
+    pixelstretch.init();
 };
 
 //Stats JavaScript Performance Monitor
