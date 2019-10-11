@@ -24,19 +24,16 @@ class PixelStretch {
             app.stage.addChild(pic)
 
 
-            //uniform sampler2D texture;
             // uniform float boundary;
-            // uniform float splitSize;
+            // uniform float hDir;
             var stretchfilter = new PixelStretchFilter(0.5,false)
             app.stage.filters = [stretchfilter]
-            // stretchfilter.splitSize=100;
 
             //stretchfilter.uniforms.split_center_point
-
+            var count=0;
             app.ticker.add(function() {
-
-                // stretchfilter.uniforms.split_center_point+= app.ticker.elapsedMS * 0.001;
-                // stretchfilter.splitSize+= app.ticker.elapsedMS * 0.001
+                count += 0.01;
+                stretchfilter.boundary=Math.abs(Math.sin(count))
             })
 
         }

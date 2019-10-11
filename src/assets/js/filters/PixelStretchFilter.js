@@ -8,7 +8,7 @@ class PixelStretchFilter extends Filter {
         super(defaultVertex, fragment);
 
         this.boundary = boundary || 0.5;
-        this.hDir = hDir || true;
+        this.hDir = hDir;
         this.uniforms.dimensions = new Float32Array(2);
     }
     /**
