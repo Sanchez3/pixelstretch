@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js'
-import StretchFrag from '../shaders/StretchFrag.glsl'
-import StretchVert from '../shaders/StretchVert.glsl'
+import PixelStretchFilter from '../filters/PixelStretchFilter.js'
+
 class PixelStretch {
     constructor() {
         this.init()
@@ -25,21 +25,18 @@ class PixelStretch {
 
 
             //uniform sampler2D texture;
-            // uniform float split_center_point;
-            // uniform float split_size;
-            var stretchfilter = new PIXI.Filter(null, StretchFrag, {
-                // split_center_point: { type: 'f', value: 0.5 },
-                // split_size: { type: 'f', value: 0.001 }
-                split_center_point:0.2,
-                split_size:0.001
-            })
+            // uniform float boundary;
+            // uniform float splitSize;
+            var stretchfilter = new PixelStretchFilter(0.5,false)
             app.stage.filters = [stretchfilter]
+            // stretchfilter.splitSize=100;
+
             //stretchfilter.uniforms.split_center_point
 
             app.ticker.add(function() {
 
                 // stretchfilter.uniforms.split_center_point+= app.ticker.elapsedMS * 0.001;
-                stretchfilter.uniforms.split_size+= app.ticker.elapsedMS * 0.001
+                // stretchfilter.splitSize+= app.ticker.elapsedMS * 0.001
             })
 
         }

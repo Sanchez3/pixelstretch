@@ -12,7 +12,7 @@
 // import animate_css from 'animate.css/animate.min.css';
 import css from '../css/css.css';
 
-import PixelStretch from './entities/PixelStretch.js';
+import PixelStretch from './states/PixelStretch.js';
 
 
 window.h5 = {

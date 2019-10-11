@@ -55,6 +55,5 @@ npm-debug.log
 
 # project
 .publish
-dist
 package-lock.json
 
