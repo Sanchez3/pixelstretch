@@ -23,7 +23,7 @@ class PixelStretch {
         function onLoaded(loader, resources) {
             this.pic = new PIXI.Sprite(resources.pic1.texture)
             app.stage.addChild(this.pic)
-
+            this.picT = resources.pic1.texture;
             // uniform float boundary;
             // uniform float verticalDir;
             var stretchfilter = new PixelStretchFilter(0, false)
@@ -49,15 +49,24 @@ class PixelStretch {
         var w = window.innerWidth;
         var h = window.innerHeight;
         var pic = this.pic;
-        var s = pic.width / pic.height;
-        this.app.renderer.resize(w, h);
+        var tw = this.picT.width;
+        var th = this.picT.height;
+        var s = tw / th;
+        // console.log(s)
         if (s > w / h) {
-            pic.width = w;
-            pic.height = w / s;
+            if (w > tw) {
+                pic.scale.set(tw / w/window.devicePixelRatio)
+            } else {
+                pic.scale.set(w / tw/window.devicePixelRatio)
+            }
         } else {
-            pic.height = h;
-            pic.width = h * s;
+            if (h > th) {
+                pic.scale.set(th / h/window.devicePixelRatio)
+            } else {
+                pic.scale.set(h / th/window.devicePixelRatio)
+            }
         }
+        this.app.renderer.resize(w, h);
 
     }
 
