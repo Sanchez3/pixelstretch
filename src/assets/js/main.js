@@ -96,7 +96,7 @@ window.h5 = {
 window.onload = function() {
     window.h5.init();
     var pixelstretch = new PixelStretch();
-    pixelstretch.init();
+    // pixelstretch.init();
 };
 
 //Stats JavaScript Performance Monitor
