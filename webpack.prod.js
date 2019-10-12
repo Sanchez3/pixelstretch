@@ -5,12 +5,23 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
+const { HashedModuleIdsPlugin } = require('webpack');
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = merge(common, {
     mode: 'production',
     output: {
         publicPath: './'
     },
+    plugins: [
+        //清空dist
+        new HashedModuleIdsPlugin(),
+        new CleanWebpackPlugin(["dist"], {
+            root: '',
+            verbose: true,
+            dry: false
+        })
+    ],
     devtool: 'source-map',
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),

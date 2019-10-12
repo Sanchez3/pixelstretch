@@ -1,10 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { HashedModuleIdsPlugin } = require('webpack');
+
 
 module.exports = {
     entry: {
@@ -102,13 +101,6 @@ module.exports = {
         }]
     },
     plugins: [
-        //清空dist
-        new HashedModuleIdsPlugin(),
-        new CleanWebpackPlugin(["dist"], {
-            root: '',
-            verbose: true,
-            dry: false
-        }),
         //Copy Resource
         new CopyWebpackPlugin([{
             from: path.resolve(__dirname, "src/assets/img"),
