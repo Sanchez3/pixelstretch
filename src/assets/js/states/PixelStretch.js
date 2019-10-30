@@ -11,6 +11,7 @@ class PixelStretch {
             width: window.innerWidth,
             height: window.innerHeight,
             resolution: window.devicePixelRatio,
+            autoDensity:true,
             antialias: true,
             preserveDrawingBuffer: true,
         });
