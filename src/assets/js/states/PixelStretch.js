@@ -11,7 +11,7 @@ class PixelStretch {
             width: window.innerWidth,
             height: window.innerHeight,
             resolution: window.devicePixelRatio,
-            autoDensity:true,
+            autoDensity: true,
             antialias: true,
             preserveDrawingBuffer: true,
         });
@@ -56,15 +56,15 @@ class PixelStretch {
         // console.log(s)
         if (s > w / h) {
             if (w > tw) {
-                pic.scale.set(tw / w/window.devicePixelRatio)
+                pic.scale.set(w / tw)
             } else {
-                pic.scale.set(w / tw/window.devicePixelRatio)
+                pic.scale.set(tw / w)
             }
         } else {
             if (h > th) {
-                pic.scale.set(th / h/window.devicePixelRatio)
+                pic.scale.set(h / th)
             } else {
-                pic.scale.set(h / th/window.devicePixelRatio)
+                pic.scale.set(th / h)
             }
         }
         this.app.renderer.resize(w, h);
